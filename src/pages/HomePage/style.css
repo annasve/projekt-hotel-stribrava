@@ -33,7 +33,9 @@ section {
 }
 
 section.dark {
-  background-color: gray;
+  /* background-color: gray; */
+  background-color: #131e2a;
+  /* ↑ rich black*/
   color: white;
 }
 
@@ -73,7 +75,7 @@ img {
   border-radius: 0.5rem;
 }
 
-.banner {
+/* .banner {
   width: 100%;
   aspect-ratio: 16/9;
   background-image: url(./img/image2.svg);
@@ -95,9 +97,9 @@ img {
 .banner__stripe .lead {
   font-size: 1rem;
   margin: 0;
-}
+} */
 
-@media screen and (min-width: 740px) {
+/* @media screen and (min-width: 740px) {
   .banner__stripe {
     padding: 1rem 0;
   }
@@ -109,7 +111,7 @@ img {
   .banner__stripe .lead {
     font-size: 1.2rem;
   }
-}
+} */
 
 .cards-row {
   display: flex;

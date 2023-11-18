@@ -1,9 +1,12 @@
 import './style.css';
+import { Header } from '../../components/Header';
+import { RoomsList } from '../../components/RoomsList';
 
 export const HomePage = () => {
   return (
     <div className="container">
-      <div class="banner">
+      <Header />
+      {/* <div class="banner">
         <div class="banner__stripe">
           <div class="container">
             <h1>Template</h1>
@@ -13,9 +16,10 @@ export const HomePage = () => {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <section class="dark">
+      <RoomsList />
+      {/* <section class="dark">
         <div class="container">
           <h2>Heading</h2>
           <p>Quas odio quidem, enim nihil unde quia temporibus vitae in ab.</p>
@@ -39,7 +43,7 @@ export const HomePage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section class="light">
         <div class="container">
