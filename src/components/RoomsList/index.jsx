@@ -2,6 +2,9 @@
 // import hotelUrl from './img/hotel.jpg';
 import { useState, useEffect } from 'react';
 
+import pokoj01 from '../img/pokoj01.jpg';
+// ../img/pokoj01.jpg"
+
 export const RoomsList = () => {
   const [rooms, setRooms] = useState([]);
 
