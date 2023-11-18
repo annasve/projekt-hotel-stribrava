@@ -1,7 +1,10 @@
 import { RoomForm } from '../../components/RoomForm';
 import './style.css';
+
 import { Header } from '../../components/Header';
 import { RoomsList } from '../../components/RoomsList';
+
+import { Footer } from '../../components/Footer';
 
 const room = {
   id: 0,
@@ -59,17 +62,7 @@ export const HomePage = () => {
       </section>
 
       <section class="dark">
-        <div class="container columns-2">
-          <div class="columns">
-            <h2>Heading</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus
-              mollitia ut pariatur eos error sunt blanditiis repellat similique
-              aperiam temporibus.
-            </p>
-          </div>
-          <img src="img/image1.svg" />
-        </div>
+        <Footer />
       </section>
     </div>
   );
