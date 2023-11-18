@@ -2,6 +2,7 @@ import { useState } from 'react';
 import dayjs from 'dayjs';
 
 export const RoomForm = ({ room, onFormSubmit }) => {
+  //--------useStates--------
   const [from, setFrom] = useState();
   const [to, setTo] = useState();
   const [people, setPeople] = useState(0);
@@ -13,6 +14,7 @@ export const RoomForm = ({ room, onFormSubmit }) => {
   const [phone, setPhone] = useState('');
   // const [sum, setSum] = useState(0);
 
+  //--------counting total price---------
   const countSum = () => {
     const numberOfDays = dayjs(to).diff(dayjs(from), 'day');
     const RoomSum = numberOfDays * room.price * people;
@@ -30,6 +32,7 @@ export const RoomForm = ({ room, onFormSubmit }) => {
     return RoomSum + childSum + petSum + mealSum;
   };
 
+  //--------form field events---------
   const onFromChanged = (e) => {
     setFrom(e.target.value);
   };
@@ -67,11 +70,99 @@ export const RoomForm = ({ room, onFormSubmit }) => {
     setPhone(e.target.value);
   };
 
+  //--------submit event - 1st version w/o sending--------
   const submitHandle = (e) => {
     e.preventDefault();
     console.log(to, from, people, meal, pets, child, noLimits, email, phone);
   };
 
+  //--------submit event - 2nd version for API communication--------
+  //todo: don't forget to change name of the function
+  const submitHandle2 = (e) => {
+    e.preventDefault();
+
+    const order = JSON.stringify({
+      from: from,
+      to: to,
+      people: people,
+      meal: meal,
+      pets: pets,
+      child: child,
+      nolimits: noLimits,
+      email: email,
+      phone: phone,
+      status: 'new',
+    });
+
+    //console.log(order);
+
+    //console.log(to, from, people, meal, pets, child, noLimits, email, phone);
+    fetch('http://localhost:4000/api/objednavky', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: order,
+    });
+  };
+
+  // fetch('http://localhost:4000/api/objednavky', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: order,
+  // });
+
+  //   fetch('https://it-seznamka.cz/me/profile', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     Authorization: 'petr.laskavy',
+  //   },
+  //   body: JSON.stringify({
+  //     name: 'Petr Laskavý',
+  //     text: 'Hledám někoho, kdo rozumí mé lásce k programování a pomůže mi s debugováním mého křehkého srdce',
+  //     age: 25,
+  //   }),
+  // });
+
+  // const fetchRooms = async () => {
+  //   const response = await fetch('http://localhost:4000/api/pokoje');
+  //   const data = await response.json();
+  //   console.log(data.result);
+  //   setRooms(data.result);
+  // };
+
+  //2023-11-03 2023-10-19 1 none true false false 123@mail.com 4545
+  // {
+  //   to: to,
+  //   from: from,
+  // }
+
+  //--------tohle vrací konzole z řádku 131 - vypadá ok
+  // {"from":"2023-11-18",
+  // "to":"2023-11-25",
+  // "people":"1",
+  // "meal":"none",
+  // "pets":true,
+  // "child":false,
+  // "nolimits":false,
+  // "email":"123@mail.com",
+  // "phone":"60600666"}
+  //------------------
+
+  //  "from": "18.11.2023",
+  //  "to": "19.11.2023",
+  //  "people": "2",
+  //  "meal": "zadne",
+  //  "pets": false,
+  //  "child": false,
+  //  "nolimits": false,
+  //  "email": "guest123@example.com",
+  //  "phone"
+
+  //---------html and css--------
   return (
     <div class="container">
       <h2>
@@ -82,7 +173,7 @@ export const RoomForm = ({ room, onFormSubmit }) => {
           <img src="img/image1.svg" alt="room image" />
           <p>{room.desc}</p>
         </div>
-        <form onSubmit={submitHandle}>
+        <form onSubmit={submitHandle2}>
           <div class="form-fields">
             <label htmlFor="from" class="field-label">
               Od:
